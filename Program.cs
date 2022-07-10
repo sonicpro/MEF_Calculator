@@ -6,9 +6,8 @@ namespace MEF_Calculator
 {
     class Program
     {
-        private CompositionContainer _container;
+        private readonly CompositionContainer _container;
 
-#pragma warning disable 8618
         private Program()
         {
             var catalog = new AggregateCatalog();
@@ -16,7 +15,6 @@ namespace MEF_Calculator
             this._container = new CompositionContainer(catalog);
             this._container.ComposeParts(this);
         }
-#pragma warning restore 8618
 
         static void Main(string[] args)
         {
@@ -25,14 +23,13 @@ namespace MEF_Calculator
             while (true)
             {
                 var s = Console.ReadLine();
-                Console.WriteLine(p.calculator.Calculate(s));
+                Console.WriteLine(p.calculator?.Calculate(s!));
             }
-
         }
 
         [Import(typeof(ICalculator))]
 #pragma warning disable 0649
-        public ICalculator calculator;
+        public ICalculator? calculator;
 #pragma warning restore 0649
     }
 }
