@@ -1,4 +1,4 @@
-﻿namespace MEF_Calculator
+﻿namespace MEF_Calculator.Operations
 {
     public interface IOperationData
     {

@@ -2,8 +2,9 @@
 using System.Collections.Generic;
 using System.ComponentModel.Composition;
 using System.Linq;
+using MEF_Calculator.Operations;
 
-namespace MEF_Calculator
+namespace MEF_Calculator.Calculator
 {
     [Export(typeof(ICalculator))]
     internal class Calculator : ICalculator

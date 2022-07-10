@@ -1,4 +1,4 @@
-﻿namespace MEF_Calculator
+﻿namespace MEF_Calculator.Calculator
 {
     public interface ICalculator
     {
