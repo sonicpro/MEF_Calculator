@@ -37,7 +37,7 @@ namespace MEF_Calculator.Calculator
 
         [Import(typeof(ICalculator))]
 #pragma warning disable 0649
-        public ICalculator? calculator;
+        private ICalculator? calculator;
 #pragma warning restore 0649
     }
 }
