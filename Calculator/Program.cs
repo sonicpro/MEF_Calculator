@@ -31,13 +31,13 @@ namespace MEF_Calculator.Calculator
             while (true)
             {
                 var s = Console.ReadLine();
-                Console.WriteLine(p.calculator?.Calculate(s!));
+                Console.WriteLine(p.calculatorFactory?.CreateExport().Value.Calculate(s!));
             }
         }
 
-        [Import(typeof(ICalculator))]
+        [Import]
 #pragma warning disable 0649
-        private ICalculator? calculator;
+        private ExportFactory<ICalculator>? calculatorFactory;
 #pragma warning restore 0649
     }
 }

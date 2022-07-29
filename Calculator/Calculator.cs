@@ -10,7 +10,9 @@ namespace MEF_Calculator.Calculator
     internal class Calculator : ICalculator
     {
         [ImportMany]
-        public IEnumerable<Lazy<IOperation, IOperationData>>? operations;
+#pragma warning disable 0649
+        public IEnumerable<ExportFactory<IOperation, IOperationData>>? operations;
+#pragma warning restore 0649
 
         public string Calculate(string input)
         {
@@ -58,15 +60,14 @@ namespace MEF_Calculator.Calculator
 
         private string Calculate(char operand, int left, int right)
         {
-            var operation = this.operations?.Where(o => o.Metadata.Symbol.Equals(operand))
-                .FirstOrDefault();
-            if (operation == null)
+            var operationFactory = this.operations?.FirstOrDefault(o => o.Metadata.Symbol.Equals(operand));
+            if (operationFactory == null)
             {
                 return "Operation not found!";
             }
             else
             {
-                return operation.Value.Operate(left, right).ToString("D");
+                return operationFactory.CreateExport().Value.Operate(left, right).ToString("D");
             }
         }
     }
